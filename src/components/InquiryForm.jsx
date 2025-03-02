@@ -9,11 +9,12 @@ const InquiryForm = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  console.log("API URL:", process.env.REACT_APP_BASE_API_URL);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5001/api/inquiries", formData);
+      await axios.post(process.env.REACT_APP_BASE_API_URL, formData);
       setResponseMessage("✅ Inquiry sent successfully!");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
